@@ -1,150 +1,246 @@
 # Layout Guide
 
-## 信号词 → 布局快速映射
+Use this file when the main question is:
 
-根据用户输入中出现的关键词，快速确定布局类型：
+# what visual structure will make this message easiest to understand?
 
-| 信号词 / 内容特征 | 推荐布局 |
-|-----------------|---------|
-| vs、对比、区别、比较、哪个好 | 左右对比布局 |
-| 步骤、流程、怎么做、先...再...、操作 | 线性流程 / 步骤卡片 |
-| 是什么、定义、概念、原理、理解 | 中心辐射布局 |
-| 问题、痛点、但是、解决方案、为什么 | 问题→方案布局 |
-| 作品、项目、案例、收藏、回顾、展示 | 网格展示布局 |
-| 体系、框架、层级、原则、方法论 | 层级式布局 |
-| 原因、为什么会、根源、因为 | 鱼骨图 / 根因树 |
+Do not choose layout by habit.
+Do not choose layout by decoration.
+Choose layout by relationship clarity.
 
 ---
 
-## 内容类型与推荐布局
+## Core rule
 
-| 内容类型 | 推荐布局 | 视觉重点 |
-|----------|----------|----------|
-| 项目介绍 | 问题→方案（左右两段） | 痛点与收益 |
-| 概念解释 | 中心概念 + 周围分支 | 核心定义 |
-| 流程说明 | 编号路径 / 线性流程 | 顺序与结果 |
-| 教程步骤 | 步骤卡片（线性或网格） | 操作顺序 |
-| 对比说明 | 左右对照 | 差异点 |
-| 作品回顾 | 网格分区 | 每项标签与亮点 |
-| 方法论 | 层级式 / 金字塔 | 核心原则 |
-| 问题分析 | 鱼骨图 / 根因树 | 根本原因 |
+# layout should reveal the relationship, not merely contain the content
 
-## 布局结构详解
-
-### 问题→方案布局
-```
-+----------------------------------+
-|         [主标题]                  |
-+----------------+-----------------+
-|   问题区域     |    方案区域      |
-|  - 痛点 1      |  - 解决 1       |
-|  - 痛点 2  --> |  - 解决 2       |
-|  - 痛点 3      |  - 解决 3       |
-+----------------+-----------------+
-|         [核心收益/结论]            |
-+----------------------------------+
-```
-适用：项目介绍、产品说明、问题解决方案
+A layout is correct when the reader can understand the core relationship quickly.
+A layout is wrong when the content technically fits, but the message is still hard to read.
 
 ---
 
-### 中心辐射布局
-```
-        [分支 1]
-           |
-[分支 4]--[核心概念]--[分支 2]
-           |
-        [分支 3]
-```
-适用：概念解释、知识框架、方法论总结
+## First decide the relationship type
+
+Before picking a layout, identify what the content is really doing.
+
+### 1. Concept
+One central idea with a few supporting branches.
+
+Use when the real question is:
+- what is this?
+- what are its parts?
+- how should I understand this idea?
+
+### 2. Flow
+A sequence with direction, order, or transformation.
+
+Use when the real question is:
+- what happens first, next, last?
+- how does this process move?
+
+### 3. Comparison
+Two or more options contrasted against each other.
+
+Use when the real question is:
+- how are these different?
+- which one fits what case?
+
+### 4. Problem → solution
+A pain point or gap followed by a response.
+
+Use when the real question is:
+- what is broken?
+- what fixes it?
+- why does this product / method matter?
+
+### 5. Showcase / set
+Several examples or items presented together.
+
+Use when the real question is:
+- what is in this collection?
+- what are the examples / cases / modules?
+
+### 6. Hierarchy
+A layered structure where top-level ideas govern lower ones.
+
+Use when the real question is:
+- what is the framework?
+- what are the levels?
+- how does the system decompose?
+
+### 7. Cause / diagnosis
+A root-cause or reason structure.
+
+Use when the real question is:
+- why is this happening?
+- what are the main drivers?
 
 ---
 
-### 线性流程布局
-```
-[标题]
-[步骤 1] --> [步骤 2] --> [步骤 3] --> [步骤 4]
-  icon          icon         icon         icon
-  label         label        label        label
-                                    [最终结果]
-```
-适用：流程说明、操作步骤、工作流
+## Recommended layouts
+
+### A. Center-radial
+Best for:
+- concept explanation
+- framework overview with one strong center
+
+Use when:
+- one idea is clearly primary
+- 3–5 branches are enough
+
+Avoid when:
+- order matters strongly
+- two sides need contrast
+
+### B. Linear flow
+Best for:
+- workflows
+- process explanations
+- sequential systems
+
+Use when:
+- sequence is the message
+- one step leads clearly to the next
+
+Avoid when:
+- branches matter more than order
+- the process has too many parallel paths for one simple line
+
+### C. Step cards
+Best for:
+- tutorials
+- checklists
+- short operational procedures
+
+Use when:
+- each step deserves its own small container
+- the reader benefits from chunked scanning
+
+Avoid when:
+- the steps are highly dependent and should feel like one continuous path instead of cards
+
+### D. Left-right comparison
+Best for:
+- A vs B
+- before vs after
+- old vs new
+- option comparison
+
+Use when:
+- contrast is the core message
+- each side can stay balanced and short
+
+Avoid when:
+- one side is vastly larger and will visually crush the other
+
+### E. Problem → solution split
+Best for:
+- product introductions
+- pain point to benefit narratives
+- “why this matters” explanations
+
+Use when:
+- the image should show tension then relief
+- the left side creates the need and the right side resolves it
+
+Avoid when:
+- the content is actually a neutral concept map, not a solved pain point
+
+### F. Grid showcase
+Best for:
+- examples
+- collections
+- cases
+- multi-item summaries
+
+Use when:
+- each item can be represented briefly
+- comparison is light and browsing matters more than sequence
+
+Avoid when:
+- one item is clearly the main point and others are secondary support
+
+### G. Hierarchy tree
+Best for:
+- layered frameworks
+- system decomposition
+- principle stacks
+
+Use when:
+- parent-child structure matters
+- top-level grouping makes the content easier to read
+
+Avoid when:
+- items are mostly peers, not true hierarchy
+
+### H. Cause map / fishbone
+Best for:
+- root cause analysis
+- diagnostic explanations
+
+Use when:
+- causes converge on one issue
+- diagnosis matters more than sequence or comparison
+
+Avoid when:
+- the content is really a process, not a cause structure
 
 ---
 
-### 步骤卡片布局
-```
-[标题]
-+------+  +------+  +------+
-|  1   |  |  2   |  |  3   |
-| icon |->| icon |->| icon |
-|label |  |label |  |label |
-+------+  +------+  +------+
-+------+  +------+
-|  4   |  |  5   |
-| icon |  | icon |
-|label |  |label |
-+------+  +------+
-[结果/提示]
-```
-适用：教程说明、checklist、多步骤操作
+## Anti-overload rules
+
+### One image is usually enough when:
+- there is one main message
+- there are 3–5 main nodes
+- the relationship type is singular and clear
+
+### Split into two images when:
+- the content has two different jobs
+- the same image would need both overview and detailed steps
+- the reader would otherwise need to switch reading modes mid-image
+
+Examples:
+- concept + worked example
+- problem framing + solution process
+- overview + case study
+
+### Split into three images when:
+- the story naturally has three phases
+- one image would become cramped or visually confused
+- each phase carries a different relationship type
+
+Examples:
+- background → process → result
+- problem → method → outcome
+
+### Do not split just to look sophisticated
+Split only when clarity materially improves.
 
 ---
 
-### 左右对比布局
-```
-+----------------------------------+
-|         [A] vs [B]               |
-+----------------+-----------------+
-|      [A]       |      [B]        |
-|    icon        |    icon         |
-|  - 特点 1      |  - 特点 1       |
-|  - 特点 2      |  - 特点 2       |
-|  - 特点 3      |  - 特点 3       |
-+----------------+-----------------+
-|         [总结/建议]               |
-+----------------------------------+
-```
-适用：技术对比、方案对比、概念区分
+## Quick layout selection test
+
+Ask:
+1. what is the one thing this image must communicate?
+2. what relationship carries that message?
+3. what is the lightest layout that makes that relationship obvious?
+4. if I remove one section, does clarity improve?
+5. if I split the content, does each image become easier to read?
 
 ---
 
-### 网格展示布局
-```
-[集合标题]
-+----------+  +----------+
-| 作品/项目 1 |  | 作品/项目 2 |
-|   icon   |  |   icon   |
-| tag tag  |  | tag tag  |
-+----------+  +----------+
-+----------+  +----------+
-| 作品/项目 3 |  | 作品/项目 4 |
-|   icon   |  |   icon   |
-| tag tag  |  | tag tag  |
-+----------+  +----------+
-[下一步 / 总结]
-```
-适用：作品回顾、功能列举、案例展示
+## Failure signs
+
+A layout choice is probably wrong when:
+- the image needs too many arrows to explain itself
+- the reader cannot tell where to start
+- the comparison is unbalanced
+- the sequence is broken by too many branches
+- labels are getting longer because the layout is doing too little work
+- the image tries to show both framework and procedure and neither is clear
 
 ---
 
-### 层级式布局
-```
-[标题]
-     [顶层原则]
-    /           \
-[子层 A]      [子层 B]
-  /   \          /   \
-[叶1] [叶2]  [叶3] [叶4]
-```
-适用：方法论、组织架构、知识体系
+## Bottom line
 
-## 通用版式原则
-
-- **主标题**：最大字号，放顶部或视觉中心，可加下划线或方框强调
-- **阅读顺序**：用数字编号、箭头、连线明确引导，避免让读者自行猜测
-- **留白**：各区域之间保持足够间距，整体不超过 70% 填充率
-- **图标优先**：每个关键点配一个简单图标，图标承担主要解释职责
-- **文字精简**：标签不超过 6 个字，说明不超过 12 个字
-- **层级分明**：主标题 > 区域标题 > 节点标签 > 补充说明，字号递减
-- **手绘人物**：当内容有"人的角色"或"场景感"时，加入 stick figure 小人和对话气泡，增加生动感
+A good sketch-note layout should make the message feel easier before the reader even studies the details.

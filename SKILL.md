@@ -1,98 +1,160 @@
 ---
 name: hand-drawn-note-generator
 description: >
-  将项目介绍、概念解释、流程说明、教程步骤、对比分析、作品回顾等内容转化为手绘笔记风格图片。
-  Use when user asks for 手绘笔记、sketchnote、手绘图、笔记图、项目介绍图、概念解释图、流程图、教程图，
-  or wants content visualized as a minimalist sketch-note image with white background, black ink lines, and color highlights.
-  Trigger phrases include 帮我做一张手绘图、生成笔记图、画成手绘笔记、sketchnote this、visualize as sketch note.
+  Turn dense content into visual-distilled image briefs for sketch-note and knowledge-sharing visuals.
+  Use when the user wants a project, concept, workflow, tutorial, comparison,
+  or showcase content turned into a hand-drawn / whiteboard / knowledge-card style visual.
+  Prioritize content distillation, layout fit, anti-overload judgment, and user-owned style choices.
 ---
 
 # Hand-Drawn Note Generator
 
-将复杂内容压缩成一眼能懂的手绘笔记图：纯白背景、黑线为主、彩色重点强调、4:3 比例。
+Use this skill when the user wants content turned into a visual summary image or prompt.
 
-## Workflow
+The real center is not one fixed drawing style.
+The real center is:
 
-### Step 1: 提炼核心信息
+# visual distillation
 
-从输入中提取：
-- **主题**：一句话概括这张图要表达什么
-- **关键节点**：3-6 个最值得展示的概念、步骤或要点
-- **逻辑关系**：并列 / 递进 / 流程 / 因果 / 对比
-- **视觉重点**：哪些信息需要重点强调
-- **布局判断**：根据逻辑关系，对照 [layout-guide.md](references/layout-guide.md) 中的信号词映射，初步确定每张图的布局类型
+This skill should first make the content visually clear, then adapt style and aspect ratio to the user's preference.
 
-拆图决策：
-- **1 张**：主题单一，3-5 个关键点
-- **2 张**：包含"背景 + 方案"或"概念 + 示例"
-- **3 张**：背景问题 + 流程步骤 + 结果案例
+## Core rule
 
-完成提炼后确认：`我理解核心是【主题】，包含【关键点】，用【X】张图呈现，第 1 张用【布局类型】布局。是否调整？`
+# content structure first, style second
 
-如果用户明确要求"直接生成"，跳过确认，直接进入 Step 2。
+Do not start from decorative style choices.
+Start from:
+- the message
+- the few nodes that matter most
+- the relationship between them
+- the lightest layout that can carry them clearly
 
-### Step 2: 选择布局
+Then confirm or choose:
+- visual style
+- aspect ratio
+- any platform-specific output preference
 
-根据内容关系选布局，参考 [layout-guide.md](references/layout-guide.md) 中的信号词 → 布局映射表。
+## When to use
 
-核心原则：
-- 主标题最大，放顶部或视觉中心
-- 箭头、编号、连线引导阅读顺序
-- 足够留白，避免拥挤
-- 图标和插图承担主要表达，文字做补充
-- 如有合适场景，加入手绘小人（stick figure）和对话气泡增加生动感
+Use this skill when the task is about turning content into:
+- a hand-drawn note
+- a sketchnote
+- a whiteboard-style visual summary
+- a research-style visual explanation
+- a knowledge-sharing card
+- a project intro visual
+- a concept explanation image
+- a workflow/tutorial/comparison sketch
 
-### Step 3: 编写 Prompt 并生成图片
+Do not use this skill when the user wants:
+- photorealistic images
+- polished marketing posters as the main goal
+- dense document pages rendered as images
+- generic design advice without a visual output target
 
-按 [prompt-guide.md](references/prompt-guide.md) 的骨架和规则写 Prompt（必须用英文，图中可见文字用中文）。
+## Active path
 
-**多张图的视觉一致性**：
-- 第 1 张正常生成
-- 第 2 张起，在 prompt 末尾加上：`Keep the same hand-drawn sketch style, line weight, and color palette as the first image in this series.`
+### Step 1 — Distill the visual message
 
-**生成前必须先展示 prompt**：
+Identify:
+- the one-sentence message of the image
+- the 3–6 highest-value nodes
+- the relationship type: concept / flow / comparison / problem-solution / showcase / hierarchy
+- what must be removed to keep the image readable
+- whether this should be one image or multiple
 
-每张图生成前，先在对话中输出完整 prompt：
+If the content is too dense for one image, split it.
+Do not force everything into one frame.
 
-````
-📋 **Prompt（可复制用于其他工具或优化）**
+If user intent is unclear, ask the smallest question that changes layout or image count.
 
-```
-[此处为完整英文 prompt]
-```
-````
+### Step 2 — Choose layout by relationship
 
-然后再调用图像生成工具，参数：
-```
-aspect_ratio: "4:3"
-```
+Use `references/layout-guide.md`.
 
-使用当前环境可用的图像生成工具（imageGenerate 或其他）；不要硬编码 model 名称，优先使用质量最高的可用模型。
+Choose layout by message structure, not by surface keyword alone.
+The real test is:
 
-### Step 4: 完成汇总
+# does the layout make the relationship immediately legible?
 
-所有图片生成完毕后，输出以下汇总：
+### Step 3 — Confirm style and aspect ratio when needed
 
-```
-✅ 生成完成
+Use `references/style-options.md`.
 
-📌 主题：[主题]
-🖼 共 [X] 张图，布局：[布局1] / [布局2] / ...
+If the user already has a style preference, follow it.
+If the user clearly cares about output vibe, ask briefly before prompting.
+If the user does not care, choose a sensible default and say so shortly.
 
-💡 Prompt 已在上方展示，可直接：
-  - 复制给其他图像工具（Midjourney、FLUX、Ideogram 等）重新生成
-  - 发给提示词工程师优化风格
-  - 留存备用，下次同类内容可直接复用
+Style is adjustable.
+It is not the product center.
 
-如需调整，告诉我要改哪一项：
-布局 / 文字内容 / 颜色强调 / 元素增减 / 拆图张数 / 图标风格 / 加手绘人物
-```
+### Step 4 — Build a portable prompt
 
-## Response Rules
+Use `references/prompt-guide.md`.
 
-- 先提炼信息并确认，再生成图片（除非用户要求直接生成）
-- 一张图信息超载时主动拆图，不强行塞满
-- 如果平台没有 `imageGenerate`，产出高质量 Prompt + 布局说明 + 张数建议作为交付物
-- 用户给大段文字时，先压缩信息，不原样塞进图里
-- 用户给流程/框架/文章时，提炼成图标 + 短标签，不用长句段落
-- **每次生成前都要展示完整 prompt，不可跳过**
+The prompt should:
+- be in English
+- specify visible Chinese text when needed
+- specify placement clearly
+- reflect the chosen style
+- reflect the chosen aspect ratio
+- avoid overloaded wording
+- remain portable across image tools
+
+### Step 5 — Show the prompt before generation
+
+Before generating, show the prompt in the conversation unless the user explicitly says not to.
+
+If the environment has image generation available, generate after showing the prompt.
+If not, deliver:
+- the prompt
+- the chosen layout
+- image count recommendation
+- style choice
+- aspect ratio recommendation
+
+### Step 6 — Close with usable output
+
+Return the smallest complete package that lets the user continue immediately:
+- one ready-to-use prompt
+- or multiple prompts for split images
+- plus a short note on layout choice / style choice when that helps
+
+Do not add long process explanation unless the user asks.
+
+## Response rules
+
+- Prefer clarity over decoration
+- Prefer one strong visual claim over many weak ones
+- Prefer splitting over overload
+- Prefer portable prompts over model-specific tricks
+- Prefer short visible labels in the image
+- Avoid dense paragraphs inside the visual
+- Avoid pretending one image can carry too much
+- Treat style and aspect ratio as adjustable parameters
+
+## Failure guards
+
+Actively prevent these failures:
+- too many nodes in one image
+- layout mismatch
+- “pretty but unclear” output
+- prompt bloat without visual hierarchy
+- needless dependence on one image model
+- locking the user into one style without asking
+- forcing one aspect ratio regardless of use case
+
+## Output style
+
+Be brief and practical.
+
+Default output should be:
+1. distilled message
+2. chosen layout
+3. image count
+4. chosen or confirmed style
+5. chosen or confirmed aspect ratio
+6. prompt(s)
+7. optional generation result
+
+Do not turn the interaction into a long design lecture.
