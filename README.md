@@ -2,109 +2,90 @@
 
 **English** | [中文](#中文)
 
-A skill for turning dense content into hand-drawn sketch-note image briefs.
-
-Its job is not just to make things look hand-drawn.
-Its job is to make a message visually clear before image generation.
+Turn any content into a visual summary image — immediately, without configuration.
 
 ```
-Input: raw text, notes, article, explanation, process, comparison
+Input: article / notes / paper / process / concept / story
   ↓
-Distill message → choose layout → reduce overload → write portable prompt
+Read signals → detect mode → build prompt → generate
   ↓
-Output: one or more sketch-note image briefs or ready-to-use prompts
+Output: real image (Gemini) or sketch SVG (fallback) + portable prompt
 ```
 
 ---
 
-## What this skill is for
+## What this skill does
 
-This skill helps an agent convert content into a sketch-note style visual summary that is:
-- clearer
-- lighter
-- more structured
-- easier to share
+It reads your content, picks the right visual form for it, and generates something real.
 
-The product center is:
+No style menus. No parameter forms. No waiting for confirmation.
 
-# visual distillation
+The five output modes:
 
-That means the skill should decide:
-- what the image is actually trying to say
-- what should be removed
-- what layout best fits the message
-- whether one image is enough
-- how to express the result in a portable prompt
+| Content type | Mode | Output feel |
+|---|---|---|
+| Personal story, XHS, emotional | **XHS Story** | Warm narrative, characters, flowing |
+| Research, paper, academic concept | **Academic** | Clean infographic, structured |
+| Tutorial, tips, "干货", WeChat | **WeChat Knowledge** | Knowledge card, organized, savable |
+| Architecture, pipeline, code flow | **Technical Whiteboard** | Precise whiteboard diagram |
+| Anything else | **General** | Classic hand-drawn sketchnote |
 
 ---
 
-## What it is not
+## Output options
 
-This project is not:
-- a generic infographic engine
-- a full design tool
-- a style pack for every visual need
-- a summary tool that ignores layout judgment
+| Environment | What you get |
+|---|---|
+| Gemini / image generation available | Real generated image + portable prompt |
+| No image generation | Sketch-style SVG (hand-drawn feel) + portable prompt |
+| You say "只给我 prompt" | Portable prompt only |
 
-It is specifically:
-
-# a visual-distillation skill for sketch-note and knowledge-sharing visuals
+You always get a portable English prompt that works in Midjourney, FLUX, and Ideogram.
 
 ---
 
-## Core capabilities
+## How to use
 
-- distill dense content into 3–6 visual claims per image
-- choose layout by message structure
-- prevent overloaded images
-- produce portable English prompts with Chinese visible text
-- keep output usable across image tools instead of coupling to one model
-- split content into multiple images when clarity requires it
+**Simplest**: just paste your content. The skill reads it and generates.
 
----
+**With a hint**: add a word about where the output goes:
+- "做成小红书的" → XHS warm narrative style
+- "给导师看的分析图" → Academic infographic
+- "公众号干货图" → WeChat knowledge card
+- "技术架构图" → Technical whiteboard
+- "给我 SVG" → SVG output even if image tools are available
+- "只要 prompt" → Output prompt only
 
-## Typical use cases
-
-- project introduction cards
-- concept explanation diagrams
-- process/workflow sketch notes
-- tutorial step visuals
-- comparison visuals
-- portfolio/showcase summary boards
-
----
-
-## How it works
-
-1. identify the real message
-2. extract only the highest-value nodes
-3. choose layout that matches the relationship
-4. cap overload by splitting when needed
-5. confirm or choose style family and aspect ratio
-6. write the prompt in a portable visual format
-7. generate the image if the environment supports image generation
+**Iteration**: after you see the first result, use natural language:
+- "更学术" / "更小红书" / "分成两张" / "竖版" / "字少点"
 
 ---
 
 ## File structure
 
-```text
+```
 hand-drawn-note-generator/
-├── SKILL.md
-├── PROJECT.md
-├── CHANGELOG.md
-├── VERSION
-├── hand-drawn-note-generator.skill
+├── SKILL.md                          # Main skill — read this first
+├── PROJECT.md                        # Product vision and principles
+├── CHANGELOG.md                      # Version history
+├── VERSION                           # Current: v0.3.0
 └── references/
-    ├── prompt-guide.md
-    └── layout-guide.md
+    ├── content-signals.md            # Signal → mode detection table
+    ├── audience-modes.md             # 5 mode profiles (style, ratio, density)
+    ├── layout-guide.md               # Layout by relationship type
+    ├── style-options.md              # Style presets per mode
+    ├── prompt-guide.md               # How to write image prompts (prose-style)
+    ├── svg-guide.md                  # How to generate sketch-style SVG
+    └── output-paths.md               # Image / SVG / Prompt-only decision logic
 ```
 
 ---
 
 ## Current version
 
-- `v0.2.0`
+`v0.3.0` — Full redesign: zero-friction interaction, 5 audience modes, SVG fallback, Gemini-optimized prompting.
+
+[Changelog](CHANGELOG.md)
 
 ---
 
@@ -118,106 +99,72 @@ MIT
 
 [English](#hand-drawn-note-generator) | **中文**
 
-一个把密集内容压缩成手绘笔记图简报的技能。
-
-它的重点不只是“画成手绘风格”，
-而是：
-
-# 先把内容变清楚，再进入出图
+把任何内容变成视觉摘要图——不需要配置，直接生成。
 
 ```
-输入：原始文字、说明、文章、流程、教程、对比内容
+输入：文章 / 笔记 / 论文 / 流程 / 概念 / 故事
   ↓
-提炼主信息 → 选布局 → 控制信息密度 → 编写可迁移 Prompt
+读取信号 → 判断模式 → 构建 Prompt → 生成
   ↓
-输出：1 张或多张手绘笔记图简报，或可直接复用的 Prompt
+输出：真实图片（Gemini）或草图 SVG（备选）+ 可移植 Prompt
 ```
 
 ---
 
-## 这个技能真正解决什么
+## 这个 skill 做什么
 
-它帮助 agent 把内容转成更容易理解、传播、复用的手绘笔记图。
+它读懂你的内容，自动选择合适的视觉形式，直接生成真实的图。
 
-产品中心不是“手绘风格本身”，
-而是：
+不需要选择风格，不需要填写参数，不需要等确认。
 
-# visual distillation / 视觉蒸馏
+五种输出模式：
 
-也就是先判断：
-- 这张图到底要表达什么
-- 什么该删掉
-- 用哪种布局最合适
-- 是否必须拆成多张
-- 怎样写成可迁移的 Prompt
-
----
-
-## 它不是什么
-
-它不是：
-- 通用信息图生成器
-- 完整设计系统
-- 替代设计师的工具
-- 只会摘要、不管版式的总结器
-
-它是：
-
-# 面向 sketchnote 的视觉蒸馏技能
+| 内容类型 | 模式 | 视觉感受 |
+|---|---|---|
+| 个人故事、小红书、情感内容 | **XHS 叙事** | 温暖手绘，有人物，流动感 |
+| 学术论文、研究框架、复杂概念 | **学术信息图** | 干净结构，清线，有层级 |
+| 干货教程、公众号内容、Tips | **知识卡片** | 有组织，可收藏，清晰分区 |
+| 架构、流程、技术系统 | **白板技术图** | 黑线箭头，精准标注 |
+| 其他 / 无明确信号 | **通用手绘** | 经典 sketchnote，直接生成 |
 
 ---
 
-## 核心能力
+## 输出选项
 
-- 把密集内容压成每张图 3–6 个高价值视觉节点
-- 根据内容关系选择布局
-- 主动防止一张图塞太满
-- 输出英文 Prompt，图中可见文字用中文
-- 不绑定单一模型，尽量保持 Prompt 可迁移
-- 当一张图不够清楚时主动拆图
+| 环境 | 你得到什么 |
+|---|---|
+| 有图像生成能力（如 Gemini）| 真实图片 + 可移植 Prompt |
+| 无图像生成能力 | 草图风 SVG（手绘感）+ 可移植 Prompt |
+| 你说"只给我 prompt" | 仅输出 Prompt |
+
+每次都输出可以在 Midjourney / FLUX / Ideogram 里直接用的英文 Prompt。
 
 ---
 
-## 适合的任务
+## 使用方式
 
-- 项目介绍图
-- 概念解释图
-- 流程说明图
-- 教程步骤图
-- 对比分析图
-- 作品/案例回顾图
+**最简单**：直接粘贴内容，skill 自动读取并生成。
+
+**加一个提示词**：
+- "做成小红书的" → XHS 温暖叙事风
+- "给导师看的分析图" → 学术信息图
+- "公众号干货图" → 知识卡片风
+- "技术架构图" → 白板技术图
+- "给我 SVG" → 输出 SVG
+- "只要 prompt" → 仅输出 Prompt
+
+**迭代**：看到第一张图之后，用自然语言说：
+- "更学术" / "更小红书" / "分成两张" / "竖版" / "字少点"
 
 ---
 
 ## 当前版本
 
-- `v0.2.0`
+`v0.3.0` — 全面重设计：零摩擦交互、5 种受众模式、SVG 备选路径、Gemini 优化 Prompt。
+
+[更新日志](CHANGELOG.md)
 
 ---
-
-## 开源协议
-
-MIT
-
-## 开源协议
-
-MIT
-流程说明图
-- 教程步骤图
-- 对比分析图
-- 作品/案例回顾图
-
----
-
-## 当前版本
-
-- `v0.2.0`
-
----
-
-## 开源协议
-
-MIT
 
 ## 开源协议
 

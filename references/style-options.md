@@ -1,131 +1,196 @@
 # Style Options
 
-Use this file when the main question is:
-
-# what visual style should this content use?
-
-The skill should not hard-code one drawing style as the only valid output.
-The main job is content distillation.
-Style should be chosen with the user when it materially affects the result.
+Use this file when selecting visual style ingredients for image prompt construction.
 
 ---
 
 ## Core rule
 
-# the user owns style preference
+> Style is downstream of mode. Always determine audience mode first, then use this file to build the style layer of the prompt.
 
-Default behavior:
-- distill the content first
-- then confirm style and aspect ratio if they are not already clear
-- then build the prompt
-
-Do not pretend one fixed style is best for all knowledge-sharing content.
+Style should express the content — not replace the content.
 
 ---
 
-## Recommended style families
+## The Two Style Families
 
-### 1. Casual hand-drawn sketchnote
-Use when the user wants:
-- lively
-- friendly
-- expressive
-- creator-style knowledge cards
+Understanding this distinction prevents the most common confusion:
 
-Typical traits:
-- black ink lines
-- colored highlights
-- playful icons
-- stick figures / speech bubbles optional
+### Sketchnote (手绘笔记)
 
-### 2. Research / academic sketch style
-Use when the user wants:
-- more serious
-- cleaner
-- more diagram-like
-- less playful
+**Definition**: A visual note that looks like a smart person's notebook. Feels personal, handmade, expressive. Text and drawing are mixed freely.
 
-Typical traits:
-- restrained accents
-- cleaner lines
-- less cartoon energy
-- more emphasis on structure and labeling
+**Best for**: General, XHS Story, WeChat Knowledge modes.
 
-### 3. Whiteboard explainer style
-Use when the user wants:
-- teaching clarity
-- tutorial style visuals
-- workshop / lesson board feel
+**Visual DNA:**
+- Black ink lines with loose, imperfect character
+- Short text labels, not full sentences
+- Icons: lightbulbs, arrows, stars, speech bubbles, simple faces
+- Color: accent highlighting, not filled blocks
+- Layout: compositional, not rigid grid
 
-Typical traits:
-- strong sequencing
-- clear arrows
-- simplified instructional composition
+### Infographic (信息图)
 
-### 4. Clean knowledge card style
-Use when the user wants:
-- social-share knowledge graphics
-- polished but still lightweight visuals
-- cleaner composition with less “messy sketch” energy
+**Definition**: A structured visual diagram that prioritizes information hierarchy and readability. Feels designed, not handmade. Data and relationships are primary.
 
-Typical traits:
-- tighter spacing discipline
-- clearer section blocks
-- fewer playful elements
+**Best for**: Academic, Technical Whiteboard modes.
 
-### 5. Minimal monochrome diagram style
-Use when the user wants:
-- maximum clarity
-- low decoration
-- almost no color dependence
+**Visual DNA:**
+- Cleaner, more controlled lines (but still sketch-feel, not CAD-perfect)
+- Labeled components with clear hierarchy
+- Structured layout: boxes, lanes, nodes with connectors
+- Color: for differentiation and emphasis, not decoration
+- Layout: grid or diagram structure first
 
-Typical traits:
-- black / gray primary
-- very sparse accents or none
-- structure over mood
+The Ilya Sutskever infographic in your reference images is a great example of the infographic family done with a hand-drawn warm style. It's structured (two-column, labeled nodes) but has illustration energy (character portrait, wavy trees, cartoon icons). This is the sweet spot for Academic mode.
 
 ---
 
-## Aspect ratio options
+## Style Preset A — Warm Narrative Sketchnote (XHS Story)
 
-The skill should not force `4:3` by default in all cases.
+**Use for:** XHS Story mode.
 
-Common choices:
-- `1:1` for social cards / compact concept notes
-- `4:3` for classic sketch-note boards
-- `16:9` for presentation / slide-style knowledge visuals
-- `3:4` or `4:5` for mobile-friendly vertical sharing
-- custom ratio if the user explicitly wants one
+**Image prompt ingredients:**
+```
+Warm hand-drawn illustration, sketchnote narrative style, soft pastel color palette,
+expressive character doodles in simple line style, flowing composition,
+handwritten-style labels, light warm background (#faf8f0 or white),
+emotional storytelling visual layout, cartoon-adjacent but not childish
+```
 
----
+**Color palette notes:**
+- Background: warm off-white or light cream
+- Accent 1: warm yellow or peach
+- Accent 2: soft coral or rose
+- Ink: near-black (#1a1a1a), not pure black
+- Optional soft teal or olive for secondary items
 
-## When to ask
-
-Ask a style/aspect question when:
-- the user clearly cares about visual tone
-- the platform or usage context affects composition
-- different styles would materially change prompt construction
-- aspect ratio affects readability or posting destination
-
-Do not ask if:
-- the user already specified style and ratio
-- the task is only asking for content distillation first
-- one default is temporarily fine and the user said “just pick one”
+**Avoid:**
+- Cold colors (pure blue, grey palettes)
+- Rigid grid structure
+- Too many labeled boxes
 
 ---
 
-## Minimal confirmation pattern
+## Style Preset B — Clean Academic Infographic (Academic)
 
-Use short confirmation, not a style survey.
+**Use for:** Academic / Research mode.
 
-Example:
-- `我先把内容拆清楚。风格你要偏：轻松手绘 / 科研示意 / 白板讲解 / 知识卡片？比例要 1:1、4:3、16:9 还是竖版？`
+**Image prompt ingredients:**
+```
+Clean academic sketch diagram, white background, restrained line work,
+minimal color accent (one blue or one teal only), precise label placement,
+structured visual hierarchy, analytical infographic composition,
+scientific illustration feel, clear node-connector labeling,
+no cartoon decorations, strong structural clarity
+```
 
-If the user does not care, choose a reasonable default and say so briefly.
+**Color palette notes:**
+- Background: pure white
+- Primary: near-black ink for all structure
+- Accent: one calm blue (#4a90d9) or deep teal (#2e8b8b)
+- No warm tones
+
+**Avoid:**
+- Playful icons (lightbulbs, stars, speech bubbles)
+- Warm color palette
+- Loose, messy composition
 
 ---
 
-## Bottom line
+## Style Preset C — Knowledge Card Sketchnote (WeChat Knowledge)
 
-Content structure is the core of the skill.
-Style and aspect ratio should be adjustable output parameters, not the product center.
+**Use for:** WeChat Knowledge mode.
+
+**Image prompt ingredients:**
+```
+Clean knowledge-sharing sketchnote, hand-drawn illustration style, white background,
+black ink primary with yellow and red accent highlights, organized visual sections,
+numbered steps or checkmarks, icons: lightbulb, document, magnifier, checkmark,
+readable at small sizes, slightly polished sketch feel (less messy than casual),
+balanced composition, educational and trustworthy tone
+```
+
+**Color palette notes:**
+- Background: white
+- Ink: near-black
+- Accent 1: warm yellow (highlight)
+- Accent 2: red (warning / emphasis)
+- Accent 3: optional light blue (info)
+
+**Avoid:**
+- Personal / emotional layout
+- Too many characters or story elements
+
+---
+
+## Style Preset D — Technical Whiteboard (Technical)
+
+**Use for:** Technical Whiteboard mode.
+
+**Image prompt ingredients:**
+```
+Technical whiteboard sketch diagram, clean black marker-style lines on white background,
+monochrome primary palette, directional arrows with clear flow,
+labeled system components in rectangular boxes, no decorative elements,
+every element is information-bearing, strong reading order from left to right or top to bottom,
+marker-on-whiteboard aesthetic, precise but hand-drawn feel
+```
+
+**Color palette notes:**
+- Background: pure white
+- Primary: near-black for all elements
+- Single accent: one color allowed for differentiation (deep orange or blue)
+- No warm tones, no playful colors
+
+**Avoid:**
+- Characters, faces, speech bubbles
+- Decorative flourishes
+- Warm palette
+
+---
+
+## Style Preset E — Classic Sketchnote (General)
+
+**Use for:** General mode (default when no signal detected).
+
+**Image prompt ingredients:**
+```
+Hand-drawn sketch note illustration, white background, black ink primary lines,
+simple icons and doodles, handwritten-style labels, light color accents for key points,
+playful but readable, high contrast, no gradients or shadows,
+knowledge-sharing visual style, clean and energetic composition
+```
+
+**Color palette notes:**
+- Background: white or very light
+- Ink: near-black
+- Accent: 2 colors max (warmest being key color)
+
+**Avoid:**
+- Over-designing the style layer before the content is structured
+
+---
+
+## Aspect Ratio Options
+
+| Ratio | Use case | Mode match |
+|-------|----------|------------|
+| 1:1 | WeChat thumbnail, social square | WeChat Knowledge |
+| 4:3 | Classic sketchnote, article image | General, WeChat |
+| 16:9 | Slides, presentations, technical diagrams | Academic, Technical |
+| 3:4 | XHS standard, mobile-first | XHS Story |
+| 4:5 | Instagram / XHS extended | XHS Story |
+
+---
+
+## User Override
+
+If the user gives a style preference, it overrides the preset. Natural language always works:
+- "更卡通" → increase character/illustration energy
+- "更干净" → reduce icons and decoration
+- "更学术" → switch to Preset B
+- "彩色版" → add more color saturation
+- "黑白就好" → drop all color accents, monochrome
+
+Never force the preset back after the user has explicitly changed direction.

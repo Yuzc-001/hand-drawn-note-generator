@@ -2,92 +2,107 @@
 
 ## One-line
 
-A visual-distillation skill that turns dense content into hand-drawn sketch-note image briefs that are clearer, lighter, and easier to share.
+Turn any content into a visual summary image — hand-drawn sketchnote, infographic, whiteboard diagram, or XHS narrative card. No configuration required.
+
+---
 
 ## What this project is actually for
 
-This project should not be understood as “a prompt template for drawing pretty notes.”
+This project should feel like handing your content to a skilled visual thinker who **just gets it** and draws something useful.
 
-Its real job is:
+Not: "fill out this form to generate a prompt."
+Not: "here are 5 style options, which one do you want?"
 
-# compress meaning before image generation
+Real job:
 
-That means it should help an agent take:
-- a messy project intro
-- a concept explanation
-- a process flow
-- a tutorial
-- a comparison
-- a portfolio / showcase summary
+> **Read the content. Understand the intent. Produce a real visual immediately.**
 
-and turn it into:
-- the right core message
-- the right visual structure
-- the right amount of content
-- the right prompt for image generation
+---
 
-## Product center
+## What "real" means
 
-The center is not one fixed image style.
-The center is:
+Real means the user gets something they can actually use:
+- A generated image (when Gemini / image tools are available)
+- A sketch-style SVG with genuine hand-drawn character (when image tools are unavailable)
+- A portable prompt that works in Midjourney / FLUX / Ideogram (always)
 
-# visual distillation
+The user should never leave the interaction with only a text description of what the image would look like.
 
-Style matters, but style is downstream and user-adjustable.
-First the skill must decide:
-- what the picture is trying to say
-- what should be left out
-- what layout carries the message best
-- when one image is enough and when multiple are required
+---
 
-Then it should adapt the final prompt to:
-- the user’s preferred visual style
-- the user’s preferred aspect ratio
-- the actual publishing or usage context
+## The two output families this skill covers
 
-## Main failure modes this project should fight
+### Sketchnote (手绘笔记)
+Personal, expressive, notebook-feel visuals. Black ink + accent color. Icons and characters welcome. For XHS Story, WeChat Knowledge, and General content.
 
-### 1. Content overload
-Too much text or too many concepts get stuffed into one image.
+### Infographic (信息图)
+Structured, hierarchy-clear, diagram-driven visuals. Clean line work, labeled nodes. For Academic and Technical Whiteboard content.
 
-### 2. Layout mismatch
-The image structure does not match the content relationship.
+These are not fixed outputs — they are ends of a spectrum. Good content sensing means choosing the right point on this spectrum for each piece of content.
 
-### 3. Pretty but unclear output
-The result looks decorative but the message is not immediately understandable.
+---
 
-### 4. Prompt without visual judgment
-The prompt describes many elements but does not produce a strong visual hierarchy.
+## The five audience modes
 
-### 5. Model-specific dependency
-The skill becomes tied to one image model instead of producing portable output.
+| Mode | Trigger | Output feel |
+|---|---|---|
+| XHS Story | 小红书, 情感, 分享 | Warm narrative, characters, flowing |
+| Academic | 论文, 学术, 导师 | Clean infographic, restrained |
+| WeChat Knowledge | 公众号, 干货, 教程 | Knowledge card, organized, savable |
+| Technical Whiteboard | 架构, 流程, 系统 | Whiteboard diagram, precise |
+| General | (no signal) | Classic sketchnote, direct |
 
-## v0.2 success criteria
+---
 
-This project should feel real when it can reliably do the following:
-- reduce dense content into a small number of visual claims
-- choose layout based on message structure, not keyword superstition alone
-- prevent overloaded images
-- produce portable prompts that can be used across image tools
-- explain its visual choices briefly when helpful
-- stay light enough to use during real work, not only as a novelty demo
+## Interaction philosophy
 
-## v0.2 boundary
+**Read, don't ask.**
 
-This project is not:
-- a general infographic generator for every style
-- a full design system
-- a replacement for human graphic design
-- a generic summary tool that ignores visual composition
+The skill should infer from content signals and generate immediately. It should only ask the user something when the content is genuinely ambiguous between two meaningful interpretations. Even then, it should offer one short line and generate the most likely option immediately, not block on confirmation.
+
+The confirmation pattern is one line:
+```
+→ [mode]: [style] · [ratio] · [count] · generating...
+```
+
+Iteration happens through natural language after the first result.
+
+---
+
+## What "visual distillation" means
+
+v0.3 keeps the v0.2 principle: distill before you draw.
+
+- Identify the one-sentence message
+- Find the 3–6 nodes that matter most
+- Choose the structure that makes the relationship obvious
+- Remove everything that creates visual noise
+
+But v0.3 goes further:
+- The distillation is now **mode-aware** (academic distillation ≠ XHS distillation)
+- The output is now **always real** (image or SVG, not just a prompt)
+- The interaction is now **zero-friction** (infer from signals, generate immediately)
+
+---
+
+## What the project is NOT
+
+- Not a design system
+- Not a marketing poster generator
+- Not a generic summary tool that ignores visual composition
+- Not a prompt template pack that requires the user to understand its parameter system
 
 It is specifically:
 
-# a sketch-note oriented visual distillation layer
+> **A visual distillation layer that produces real, usable visual output from any content, adapting to the user's audience and platform without making them configure anything.**
 
-## What needs rebuilding
+---
 
-To become a real skill repo, this project needs:
-- a sharper `SKILL.md` centered on visual distillation and anti-overload judgment
-- clearer reference separation between layout choice and prompt construction
-- top-level release/version surface
-- examples / stress cases later, so the project can show it handles hard content, not only easy demos
+## v0.3 success criteria
+
+This project feels real when:
+- A user pastes any content and gets a real image within one exchange
+- A user who types "小红书风格" gets XHS-appropriate output without further questions
+- A user without image generation tools still gets a usable, sketch-style SVG
+- A user can iterate with natural language: "more academic", "split into 2", "vertical"
+- The outputs look genuinely different across the five modes (not just style-name changes)

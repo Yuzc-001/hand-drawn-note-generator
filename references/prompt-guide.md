@@ -1,265 +1,139 @@
-# Prompt Guide
+# Prompt Guide (v0.3)
 
-Use this file when the main question is:
+Use this file to turn a distilled visual idea into an image prompt.
 
-# how do I turn a distilled visual idea into a portable image prompt without locking the user into one fixed style?
-
-This file is not for deciding the message.
-That should already be done.
-This file is for expressing the message clearly in prompt form.
+**This file is for expression, not for deciding content.**
+Content structure and audience mode should already be determined before reaching this file.
 
 ---
 
 ## Core rule
 
-# preserve structure first, then express style
+> Write the prompt as flowing English prose, not as a labeled form.
 
-A weak prompt bundle starts from aesthetic keywords.
-A strong prompt bundle starts from:
-- the message
-- the relationship
-- the layout
-- the density limit
-- the user’s chosen style and aspect ratio
+Gemini and most modern image generation models respond better to natural description than to structured labels.
 
----
+**Weak (form-style):**
+```
+MAIN MESSAGE: System architecture overview
+LAYOUT: Linear flow
+TOP: Title
+KEY NODES: Input, Process, Output, Monitor, Deploy
+```
 
-## Layer 1 — universal prompt requirements
-
-These are the cross-style requirements.
-They should survive even when the user changes the visual style.
-
-Every prompt should preserve:
-- a clear one-sentence visual goal
-- explicit layout commitment
-- explicit spatial placement
-- readable visual hierarchy
-- short visible labels
-- low clutter
-- portable wording that is not tied to one model
-
-These matter more than any single aesthetic phrase.
-
----
-
-## Layer 2 — base prompt skeleton
-
-```text
-[style description], about [topic], with [visible text language if needed].
-
-MAIN MESSAGE: [one-sentence visual goal]
-LAYOUT: [layout type]
-TOP / LEFT / CENTER / RIGHT / BOTTOM: [what appears where]
-KEY NODES: [3–6 short items]
-ICONS: [simple concrete icon list]
-CONNECTIONS: [arrows / numbering / dividers / branches]
-COLOR ACCENTS: [only if useful]
-OPTIONAL CHARACTER: [only if it helps]
-OPTIONAL SPEECH BUBBLE: [only if it helps]
-
-Style instructions: [clarity / line / spacing / contrast / composition instructions matching the chosen style]
-Aspect ratio: [ratio if the generation tool or workflow supports it]
+**Strong (prose-style):**
+```
+Hand-drawn whiteboard diagram showing a 5-step technical pipeline: Input → Process → Output → Monitor → Deploy. Each step in a rough sketch box with a directional arrow. Bold title "System Architecture" at top center. Black marker lines on white background. One orange accent on the final Deploy box. Simple, clean, readable at a glance.
 ```
 
 ---
 
-## Layer 3 — style presets
+## Prompt Construction
 
-Use these as starting bundles, not as global hard requirements.
+### Layer 1 — Style opener (from audience mode)
 
-### A. Casual hand-drawn sketchnote
-Use when the user wants:
-- lively
-- friendly
-- expressive
-- creator-style knowledge sharing
+Start with the style description from `references/style-options.md` for the detected mode.
 
-Recommended style description:
-- `Hand-drawn sketch note style illustration on a pure white background`
+| Mode | Style opener |
+|------|-------------|
+| XHS Story | `Warm hand-drawn illustration, narrative sketchnote style, soft pastel colors, expressive character doodles,` |
+| Academic | `Clean academic sketch diagram, restrained line work, minimal color accent, structured infographic composition,` |
+| WeChat Knowledge | `Clean knowledge-sharing sketchnote, organized visual sections, handwritten-style icons, light color highlights,` |
+| Technical Whiteboard | `Technical whiteboard sketch diagram, clean black marker lines, directional arrows, labeled system components,` |
+| General | `Hand-drawn sketch note illustration, black ink, simple icons, light color accents, playful but readable,` |
 
-Recommended style instructions:
-- black ink primary lines
-- simple icons and illustrations
-- handwritten Chinese text if needed
-- playful but readable
-- high contrast
-- no gradients, no shadows
-- light color accents for emphasis
+### Layer 2 — Subject description
 
-### B. Research / academic sketch style
-Use when the user wants:
-- more serious
-- cleaner
-- more diagram-like
-- less playful energy
+One or two sentences describing what the image shows. Be specific and spatial.
 
-Recommended style description:
-- `Clean academic sketch diagram on a white background`
+Good patterns:
+- "showing [N] [relationship type]: [node 1] → [node 2] → ..."
+- "comparing [A] on the left versus [B] on the right"
+- "centered on [main concept] with [N] branches: [label 1], [label 2], ..."
+- "a narrative flow from [start state] to [end state] with [N] key moments"
 
-Recommended style instructions:
-- restrained line work
-- precise labels
-- limited accents
-- strong structure
-- minimal decorative elements
-- clear analytical composition
+### Layer 3 — Layout and spatial guidance
 
-### C. Whiteboard explainer style
-Use when the user wants:
-- teaching clarity
-- workshop / classroom feel
-- tutorial readability
+Specify where things are. Use concrete placement words:
+- top center / bottom row / left panel / right side / center hub
+- above / below / connected by arrow / branching from
 
-Recommended style description:
-- `Whiteboard explainer illustration with clean marker-style lines`
+Avoid: "well arranged", "nicely balanced", "beautiful composition"
 
-Recommended style instructions:
-- strong directional arrows
-- instructional sequencing
-- readable labeled steps
-- simple icon support
-- clean contrast
+### Layer 4 — Key content (concise)
 
-### D. Clean knowledge card style
-Use when the user wants:
-- social-share graphics
-- polished knowledge-sharing visuals
-- less sketch mess, more clean blocks
+Name the 3–6 key nodes or labels that must appear. Keep them short (1–3 words each).
 
-Recommended style description:
-- `Clean knowledge-sharing card illustration with lightweight diagram elements`
-
-Recommended style instructions:
-- tidy section blocks
-- light but clear visual grouping
-- restrained icon set
-- cleaner spacing discipline
-- social-friendly composition
-
-### E. Minimal monochrome diagram
-Use when the user wants:
-- maximum clarity
-- low decoration
-- mostly structure over style
-
-Recommended style description:
-- `Minimal monochrome explanatory diagram on a white background`
-
-Recommended style instructions:
-- black and gray primary
-- almost no decorative accents
-- high readability
-- sparse, precise composition
-
----
-
-## User override rule
-
-If the user gives a visual preference, that preference outranks the preset.
-
-Examples:
-- more academic
-- more playful
-- more like a whiteboard lesson
-- more like a clean Xiaohongshu knowledge card
-- vertical mobile-friendly ratio
-- 16:9 slide ratio
-
-Do not force the preset back in after the user has chosen.
-
----
-
-## Prompt writing rules
-
-### Keep visible text short
-Prefer:
-- short labels
-- short node names
-- short callouts
-
-Avoid:
-- sentence-heavy boxes
-- paragraph-style explanation inside the image
-
-### Use concrete placement words
-Prefer:
-- top center
-- left side
-- bottom row
-- center branch
-- right panel
-
-Avoid vague wording like:
-- `well arranged`
-- `nicely balanced`
-- `beautiful composition`
-
-### Use concrete icon language
-Prefer:
-- lightbulb
-- arrow
-- gear
-- document
-- magnifier
-- checkmark
-- warning triangle
-
-Avoid abstract prompt fluff.
-
-### Keep hierarchy visible
-The title should be strongest.
-Primary nodes should be more prominent than supporting notes.
-The prompt should reflect that.
-
----
-
-## Anti-bloat rules
-
-If the prompt needs:
-- too many areas
-- too many labels
-- too many arrows
-- too many icon types
-- too many color roles
-
-then the real problem is probably upstream:
-- too much content
-- wrong layout
-- or insufficient splitting
-
-Fix the structure first.
-Do not compensate with longer prompting.
-
----
-
-## Multi-image consistency
-
-For image 2 and beyond, append a consistency line only if the images are truly one series.
-
-Example:
-
-```text
-Keep the same overall visual language, line style, and color discipline as the first image in this series.
+If Chinese visible text is needed:
+```
+Include visible Chinese text: "[label 1]", "[label 2]", "[label 3]"
 ```
 
-Do not over-constrain if variation between images is useful.
+### Layer 5 — Style finish
+
+Close with 1–2 sentences of visual clarity instructions:
+- "White background, high contrast, no gradients."
+- "Strong reading hierarchy: title largest, nodes medium, sub-labels small."
+- "Minimal decoration — every element carries information."
+
+### Layer 6 — Aspect ratio
+
+Append aspect ratio as the final line if the generation tool supports it:
+```
+Aspect ratio: 16:9
+```
 
 ---
 
-## Failure signs
+## Full Prompt Examples
 
-A prompt is probably weak when:
-- it reads like a raw checklist of everything the user mentioned
-- the title is not clearly primary
-- the reading order is implicit instead of guided
-- the prompt uses many adjectives but few spatial instructions
-- the style is very specific but the message remains vague
-- the prompt gets longer because the content was not distilled first
-- the style preset is being treated like a mandatory global identity
+### Example: Technical Whiteboard (Academic / Technical mode)
+
+```
+Technical whiteboard sketch diagram showing a 4-step deployment pipeline: Build → Test → Stage → Deploy. Each step in a rough rectangular box, connected by thick directional arrows. Bold title "CI/CD Pipeline" at top center in large marker-style text. Red warning icon next to Test step. Black marker lines on white background, one orange accent on Deploy. Simple labeled components, no decoration, strong left-to-right reading flow.
+Aspect ratio: 16:9
+```
+
+### Example: XHS Narrative (XHS Story mode)
+
+```
+Warm hand-drawn illustration, narrative sketchnote style. A personal story timeline moving top to bottom: "初见" at the top with two simple cartoon figures meeting, then "争吵" in the middle with jagged energy lines, then "和好" at the bottom with a soft heart icon. Soft coral and warm yellow accents. Handwritten-style Chinese labels. Flowing layout with light cream background. Feels personal, emotional, shareable.
+Aspect ratio: 3:4
+```
+
+### Example: Knowledge Card (WeChat Knowledge mode)
+
+```
+Clean knowledge-sharing sketchnote. Title "5个提效技巧" in bold at the top. Five numbered items arranged vertically, each with a simple icon to the left: 1-lightbulb, 2-clock, 3-checkmark, 4-gear, 5-star. Black ink primary, yellow highlight on key words, red accent for item numbers. Organized section blocks, readable at small size. White background, no decoration beyond icons.
+Aspect ratio: 1:1
+```
 
 ---
 
-## Bottom line
+## Prompt Quality Checks
 
-The prompt should carry distilled structure into image generation.
-Style should shape the final expression, not replace the thinking.
+Before generating, verify:
+- [ ] Does the prompt read as natural English prose (not a form)?
+- [ ] Is the layout type explicit (not implied)?
+- [ ] Are spatial positions named concretely?
+- [ ] Are there 3–6 key content nodes, not more?
+- [ ] Is the title/hierarchy mentioned?
+- [ ] Is the aspect ratio appended?
+- [ ] Is the total length under ~120 words? If longer, the content wasn't distilled enough.
+
+---
+
+## Multi-Image Consistency
+
+For image 2 and beyond in a series, append:
+```
+Same visual language, line style, and color palette as image 1 of this series.
+```
+
+---
+
+## Anti-bloat rule
+
+If writing the prompt requires more than ~120 words, stop.
+The problem is upstream: too much content, wrong split point, or insufficient distillation.
+Fix the structure before fixing the prompt.

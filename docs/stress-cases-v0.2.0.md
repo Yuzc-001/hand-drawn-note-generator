@@ -1,6 +1,6 @@
 # hand-drawn-note-generator v0.2.0 — Stress Cases
 
-日期：2026-03-22  
+日期：2026-03-22
 目标：验证当前 v0.2.0 重构后，这个 skill 是否真的围绕 visual distillation 站住，而不是重新滑回固定画风 prompt 工具。
 
 重点压测：
